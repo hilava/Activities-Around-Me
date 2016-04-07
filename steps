@@ -38,3 +38,29 @@ in server.js:
 create html endpoints e.g : app.get('/', function homepage (req, res) {res.sendFile(__dirname + '/views/index.html');});
 
 create json API endpoints e.g : app.get('/api', controllers.api.index);
+
+
+
+multi-page app:
+
+in server.js: app.get('/activityList', function homepage (req, res) {
+  res.sendFile(__dirname + '/views/activityByCat.html');
+});
+
+in index.html: <a href="/activityList"> on the element that is clicked on
+
+
+adding controller:
+
+create activitiesController.js file :
+  add function index(req, res){}
+  export public methods:
+  module.exports = {
+    index: index,
+    // create: create,
+    // show: show,
+    // destroy: destroy,
+    // update: update
+  };
+in controllers/index.js:
+app.get('/api/activities', controllers.activities.index);

@@ -30,7 +30,7 @@ app.get('/', function homepage (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 app.get('/activityList', function homepage (req, res) {
-  res.sendFile(__dirname + '/views/activityList.html');
+  res.sendFile(__dirname + '/views/activities.html');
 });
 
 /*
@@ -39,7 +39,7 @@ app.get('/activityList', function homepage (req, res) {
 
 app.get('/api', controllers.api.index);
 
-// app.get('/api/albums', controllers.albums.index);
+app.get('/api/activities', controllers.activities.index);
 //
 // app.post('/api/albums', controllers.albums.create);
 //
