@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Activities Around Me</title>
+
+    <!-- bootstrap css -->
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- custom styles -->
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+
+    <!-- jquery -->
+    <!-- Note: using subresource integrity; see: https://en.wikipedia.org/wiki/Subresource_Integrity -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+
+    <!-- handlebars -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <!-- APPLICATION SCRIPTS -->
+    <script src="/scripts/activitiesByCat.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class=row>
+        <div class="col-xs-4 col-xs-offset-2">
+          <image src="">
+        </div>
+        <div class="col-xs-4 col-xs-offset-2">
+          <h1>Activities Around Me</h1>
+        </div>
+    </div>
+    </header>
+      <div class="container">
+        <div id="activityTarget">
+          <script id="activity-template" type="text/x-handlebars-template">
+            <div class="row">
+              <h2>{{category}} Activity List</h2>
+              <br>
+            </div>
+            {{#each activities}}
+              <div class="row">
+                <div class="col-xs-4 col-xs-offset-2">
+                  <image src={{image_url}}>
+                </div>
+                <div class="col-xs-6">
+                  <h4>{{activity_name}}></h4>
+                </div>
+                <br>
+                <hr>
+              </div>
+            {{/each}}
+          </script>
+        </div>
+      </div>
+  </body>
+</html>

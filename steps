@@ -1,0 +1,40 @@
+create application scripts in every html file e.g: <script src="/scripts/index.js"></script>
+
+create controllers folder under the project folder
+  create apiController in the this folder: function index(req, res) {res.json({message: "Welcome to Activities Around Me", documentation_url: "", base_url: "", endpoints: [{method: "GET", path: "/api", description: "Describes available endpoints"}]});}
+  create index.js in this folder: module.exports.api = require('./apiController');
+
+create models folder under the project folder with index.js file in it
+
+create views folder to save all the html files in
+
+create public folder and create these folders in it: images, scripts (for client side js files), styles (for css files)
+
+make sure .gitignore file exists (or create it) and make sure it has **/node_modules in it. so that git commit will not include the node-modules folder
+
+
+
+in server.js:
+
+require express in our app: var express = require('express');
+
+require db models: var db =require('./models');
+
+require bodyParser: var bodyParser = require('body-parser');
+
+require controllers: var controllers = require('./controllers');
+
+generate a new express app and call it 'app': var app = express();
+
+body parser config to accept our datatypes: app.use(bodyParser.urlencoded({ extended: true }));
+
+serve static files from public folder: app.use(express.static(__dirname + '/public'));
+
+server - listen on port 3000: app.listen(process.env.PORT || 3000, function () {console.log('Express server is running on http://localhost:3000/');});
+
+run nodemon on terminal
+
+in server.js:
+create html endpoints e.g : app.get('/', function homepage (req, res) {res.sendFile(__dirname + '/views/index.html');});
+
+create json API endpoints e.g : app.get('/api', controllers.api.index);

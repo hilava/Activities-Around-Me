@@ -1,0 +1,10 @@
+.navbar-brand img{
+  height: 30px;
+  width:30px;
+}
+
+.navbar-brand strong{
+  box-sizing:content-box;
+  margin-bottom: 15px;
+
+}
