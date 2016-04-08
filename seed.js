@@ -1,0 +1,176 @@
+// This file allows us to seed our application with data
+// simply run: `node seed.js` from the root of this project folder.
+
+var db = require('./models');
+
+var activityList = [ {activity_name: "Hebrew Song & Movement",
+                      category: ["kids"],
+                      description: "Hebrew Song & Movement Class: for ages 4 months - 2.5 years",
+                      schedule: "Various Mornings and Afternoons - email for details",
+                      location: "Sunnyvale, CA",
+                      website:"",
+                      contact_info: {email: "edelmanariela@gmail.com", phone_num: ""},
+                      image_url:"/images/song_and_movement.jpg",
+                      instructor:"Ariela Edelman"
+                    },
+                      { activity_name: "Sippurchik",
+                        category: ["kids"],
+                        description: "Bringing Israeli Childeren's Stpries to Life: for ages 2-4",
+                        schedule: "Mon: 10 AM;   Tue: 5 PM;   Wed: 4:40 PM",
+                        location: "Palo Alto, CA / Sunnyvale, CA",
+                        website:"https://paloaltojcc.org/Events/evr/2/sippurchik-bringing-israeli-childrens-stories-to-life",
+                        contact_info: {email: "hweissberg@paloaltojcc.org", phone_num: ""},
+                        image_url:"/images/sippurchik.jpg",
+                        instructor:"Koren"
+                      },
+                      { activity_name: "Thinking and Math Challenges",
+                        category: ["kids"],
+                        description: "Thinking and Math Challenges: for ages 5-12 years",
+                        schedule: "",
+                        location: "Sunnyvale, CA",
+                        website:"",
+                        contact_info: {email: "yaeltal77@gmail.com", phone_num: "408-480-8514"},
+                        image_url:"/images/math_challenges.jpg",
+                        instructor:"Yael Tal"
+                      },
+                      { activity_name: "Donna Running Club",
+                        category: ["Kids", "Women's Sports"],
+                        description: "Running Groups Fot Kids, Teens and Adults",
+                        schedule: "Dates and times vary, please refer to website below",
+                        location: "Sunnyvale, CA",
+                        website:"https://www.facebook.com/DonnaRunningClub/?fref=nf",
+                        contact_info: {email: "donna.gavriel@gmail.com", phone_num: "503-415-0548"},
+                        image_url:"/images/dona_running_club.jpg",
+                        instructor:"Donna Gavriel"
+                      },
+                      { activity_name: "Gali Yoga",
+                        category: ["Women's Sports"],
+                        description: "Small-group Vinyassa Flow Classes",
+                        schedule: "Mon: 7:15 PM - 8:15 PM  8:30 PM - 9:30 PM;   Wed: 7:15 PM - 8:15 PM  8:30 PM - 9:30 PM;" ,
+                        location: "1399 S Winchester Blvd Suite 140, San Jose, CA",
+                        website:"www.wholebodysj.com/yoga",
+                        contact_info: {email: "galiyogasj@gmail.com", phone_num: "408-921-2912"},
+                        image_url:"/images/gali_yoga.jpg",
+                        instructor:"Gali"
+                      },
+                      { activity_name: "Irit's Walking Groups",
+                        category: ["Women's Sports"],
+                        description: "Waking Groups / One On One Sessions",
+                        schedule: "Tue: 9:00 AM - 10:00 AM;  Thu: 9:00 AM - 10:00 AM" ,
+                        location: "Ortega Park",
+                        website:"",
+                        contact_info: {email: "iritfreidman@yahoo.com", phone_num: "408-507-5015"},
+                        image_url:"/images/walking_groups1.jpg",
+                        instructor:"Irit Friedman"
+                      },
+                      { activity_name: "Pilatis & Yoga With Limor",
+                        category: ["Women's Sports"],
+                        description: "Pilatis & Yoga classes",
+                        schedule: "Tue: 9:30 AM + 8:30 PM;  Thu: 9:30 AM - 8:30 PM;   Sat: Every 2nd+4th Sat 9:30 AM" ,
+                        location: "Palo Alto, CA",
+                        website:"https://www.facebook.com/Yoga-with-Limor-174437502590567/?pnref=lhc",
+                        contact_info: {email: "limor.nirpaz@gmail.com", phone_num: "650-605-7189"},
+                        image_url:"/images/pilatis_limor.jpg",
+                        instructor:"Limor Nirpaz"
+                      },
+                      { activity_name: "Crochet with T-Shirt Yarn",
+                        category: ["Arts & Crafts"],
+                        description: "Crochet with T-Shirt Yarn for beginners",
+                        schedule: "Dates and times vary, please contact instructor for more info" ,
+                        location: "Sunnyvale, CA",
+                        website:"",
+                        contact_info: {email: "moradhi@gmail.com", phone_num: ""},
+                        image_url:"/images/tricot_knitting.jpg",
+                        instructor:"Hila Morad"
+                      },
+                      { activity_name: "Halo Pottery",
+                        category: ["Arts & Crafts"],
+                        description: "Clay Pottery for childern, parent-child classes, adult wheel thrown classes",
+                        schedule: "Dates and times vary, please refer to website below",
+                        location: "Los Altos, CA",
+                        website:"https://www.facebook.com/halopottery?_rdr=p",
+                        contact_info: {email: "", phone_num: "650-471-2120"},
+                        image_url:"/images/halp_pottery.jpg",
+                        instructor:"Hila Itzhak"
+                      }
+                    ];
+
+  var instructorList = [ {  inst_name: "Ariela Edelman",
+                            email: "edelmanariela@gmail.com",
+                            password: "",
+                            phone_num: ""
+                        },
+                        {  inst_name: "Koren",
+                            email: "hweissberg@paloaltojcc.org",
+                            password: "",
+                            phone_num: ""
+                        },
+                        {  inst_name: "Tael Tal",
+                            email: "yaeltal77@gmail.com",
+                            password: "",
+                            phone_num: "408-480-8514"
+                        },
+                        {  inst_name: "Donna Gavriel",
+                            email: "donna.gavriel@gmail.com",
+                            password: "",
+                            phone_num: "503-415-0548"
+                        },
+                        {  inst_name: "Gali",
+                            email: "galiyogasj@gmail.com",
+                            password: "",
+                            phone_num: "408-921-2912"
+                        },
+                        {  inst_name: "Irit Friedman",
+                            email: "iritfreidman@yahoo.com",
+                            password: "",
+                            phone_num: "408-507-5015"
+                        },
+                        {  inst_name: "Limor Nirpaz",
+                            email: "limor.nirpaz@gmail.com",
+                            password: "",
+                            phone_num: "650-605-7189"
+                        },
+                        {  inst_name: "Hila Morad",
+                            email: "moradhi@gmail.com",
+                            password: "",
+                            phone_num: ""
+                        },
+                        {  inst_name: "Hila Itzhak",
+                            email: "",
+                            password: "",
+                            phone_num: "650-471-2120"
+                        }
+                      ];
+
+db.Instructor.remove({}, function(err, instructors){
+  console.log('removed all instructors');
+  db.Instructor.create(instructorList, function(err, instructors){
+    if(err){console.log(err); return;}
+    console.log('recreated all instructors');
+    console.log('created', instructors.length, "instructors");
+
+    db.Activity.remove({}, function(err, activities){
+      console.log('removed all activities');
+      activityList.forEach(function(activityData){
+        var activity = new db.Activity({
+          activity_name: activityData.activity_name,
+          category: activityData.category,
+          description: activityData.description,
+          schedule: activityData.schdeule,
+          location: activityData.location,
+          website: activityData.website,
+          image_url:activityData.image_url,
+        });
+        db.Instructor.findOne({instName: activityData}, function(err,foundInstructor){
+          console.log('found instructor ' + foundInstructor.instName + ' for activity ' + activity.activity_name);
+          if(err){return console.log(err);}
+          activity.instructor = foundInstructor;
+          activity.save(function(err, savedActivity){
+            if(err){return console.log(err);}
+            console.log('saved ' + savedActivity.activity_name + ' by ' + foundInstructor.instName);
+          });
+        });
+      });
+    });
+  });
+});

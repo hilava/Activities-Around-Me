@@ -5,7 +5,7 @@
 
 //GET /api/activities
 
-var activities = [ {activity_name: "Hebrew Song & Movement With Ariela",
+var activities = [ {activity_name: "Hebrew Song & Movement",
                       category: ["kids"],
                       description: "Hebrew Song & Movement Class: for ages 4 months - 2.5 years",
                       schedule: "Various Mornings and Afternoons - email for details",
@@ -24,7 +24,7 @@ var activities = [ {activity_name: "Hebrew Song & Movement With Ariela",
                         contact_info: {email: "hweissberg@paloaltojcc.org", phone_num: ""},
                         image_url:"/images/sippurchik.jpg",
                         instructor_id:"2"
-                      }
+                      },
                     ];
 
 function index(req, res){
