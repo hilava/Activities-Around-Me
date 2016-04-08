@@ -9,7 +9,6 @@ var activityList = [ {activity_name: "Hebrew Song & Movement",
                       schedule: "Various Mornings and Afternoons - email for details",
                       location: "Sunnyvale, CA",
                       website:"",
-                      contact_info: {email: "edelmanariela@gmail.com", phone_num: ""},
                       image_url:"/images/song_and_movement.jpg",
                       instructor:"Ariela Edelman"
                     },
@@ -19,7 +18,6 @@ var activityList = [ {activity_name: "Hebrew Song & Movement",
                         schedule: "Mon: 10 AM;   Tue: 5 PM;   Wed: 4:40 PM",
                         location: "Palo Alto, CA / Sunnyvale, CA",
                         website:"https://paloaltojcc.org/Events/evr/2/sippurchik-bringing-israeli-childrens-stories-to-life",
-                        contact_info: {email: "hweissberg@paloaltojcc.org", phone_num: ""},
                         image_url:"/images/sippurchik.jpg",
                         instructor:"Koren"
                       },
@@ -29,7 +27,6 @@ var activityList = [ {activity_name: "Hebrew Song & Movement",
                         schedule: "",
                         location: "Sunnyvale, CA",
                         website:"",
-                        contact_info: {email: "yaeltal77@gmail.com", phone_num: "408-480-8514"},
                         image_url:"/images/math_challenges.jpg",
                         instructor:"Yael Tal"
                       },
@@ -39,7 +36,6 @@ var activityList = [ {activity_name: "Hebrew Song & Movement",
                         schedule: "Dates and times vary, please refer to website below",
                         location: "Sunnyvale, CA",
                         website:"https://www.facebook.com/DonnaRunningClub/?fref=nf",
-                        contact_info: {email: "donna.gavriel@gmail.com", phone_num: "503-415-0548"},
                         image_url:"/images/dona_running_club.jpg",
                         instructor:"Donna Gavriel"
                       },
@@ -49,7 +45,6 @@ var activityList = [ {activity_name: "Hebrew Song & Movement",
                         schedule: "Mon: 7:15 PM - 8:15 PM  8:30 PM - 9:30 PM;   Wed: 7:15 PM - 8:15 PM  8:30 PM - 9:30 PM;" ,
                         location: "1399 S Winchester Blvd Suite 140, San Jose, CA",
                         website:"www.wholebodysj.com/yoga",
-                        contact_info: {email: "galiyogasj@gmail.com", phone_num: "408-921-2912"},
                         image_url:"/images/gali_yoga.jpg",
                         instructor:"Gali"
                       },
@@ -59,7 +54,6 @@ var activityList = [ {activity_name: "Hebrew Song & Movement",
                         schedule: "Tue: 9:00 AM - 10:00 AM;  Thu: 9:00 AM - 10:00 AM" ,
                         location: "Ortega Park",
                         website:"",
-                        contact_info: {email: "iritfreidman@yahoo.com", phone_num: "408-507-5015"},
                         image_url:"/images/walking_groups1.jpg",
                         instructor:"Irit Friedman"
                       },
@@ -69,7 +63,6 @@ var activityList = [ {activity_name: "Hebrew Song & Movement",
                         schedule: "Tue: 9:30 AM + 8:30 PM;  Thu: 9:30 AM - 8:30 PM;   Sat: Every 2nd+4th Sat 9:30 AM" ,
                         location: "Palo Alto, CA",
                         website:"https://www.facebook.com/Yoga-with-Limor-174437502590567/?pnref=lhc",
-                        contact_info: {email: "limor.nirpaz@gmail.com", phone_num: "650-605-7189"},
                         image_url:"/images/pilatis_limor.jpg",
                         instructor:"Limor Nirpaz"
                       },
@@ -79,7 +72,6 @@ var activityList = [ {activity_name: "Hebrew Song & Movement",
                         schedule: "Dates and times vary, please contact instructor for more info" ,
                         location: "Sunnyvale, CA",
                         website:"",
-                        contact_info: {email: "moradhi@gmail.com", phone_num: ""},
                         image_url:"/images/tricot_knitting.jpg",
                         instructor:"Hila Morad"
                       },
@@ -89,7 +81,6 @@ var activityList = [ {activity_name: "Hebrew Song & Movement",
                         schedule: "Dates and times vary, please refer to website below",
                         location: "Los Altos, CA",
                         website:"https://www.facebook.com/halopottery?_rdr=p",
-                        contact_info: {email: "", phone_num: "650-471-2120"},
                         image_url:"/images/halp_pottery.jpg",
                         instructor:"Hila Itzhak"
                       }
@@ -105,7 +96,7 @@ var activityList = [ {activity_name: "Hebrew Song & Movement",
                             password: "",
                             phone_num: ""
                         },
-                        {  inst_name: "Tael Tal",
+                        {  inst_name: "Yael Tal",
                             email: "yaeltal77@gmail.com",
                             password: "",
                             phone_num: "408-480-8514"
@@ -141,7 +132,7 @@ var activityList = [ {activity_name: "Hebrew Song & Movement",
                             phone_num: "650-471-2120"
                         }
                       ];
-
+//nesting activity code inside the instructor code because db calls are asynchronous and we want this code to happen in order
 db.Instructor.remove({}, function(err, instructors){
   console.log('removed all instructors');
   db.Instructor.create(instructorList, function(err, instructors){
@@ -159,15 +150,16 @@ db.Instructor.remove({}, function(err, instructors){
           schedule: activityData.schdeule,
           location: activityData.location,
           website: activityData.website,
-          image_url:activityData.image_url,
+          image_url: activityData.image_url,
+          instructor: activityData.instructor,
         });
-        db.Instructor.findOne({instName: activityData}, function(err,foundInstructor){
-          console.log('found instructor ' + foundInstructor.instName + ' for activity ' + activity.activity_name);
+        db.Instructor.findOne({inst_name: activityData.instructor}, function(err,foundInstructor){
+          console.log('found instructor ' + foundInstructor.inst_name + ' for activity ' + activity.activity_name);
           if(err){return console.log(err);}
           activity.instructor = foundInstructor;
           activity.save(function(err, savedActivity){
             if(err){return console.log(err);}
-            console.log('saved ' + savedActivity.activity_name + ' by ' + foundInstructor.instName);
+            console.log('saved ' + savedActivity.activity_name + ' by ' + foundInstructor.inst_name);
           });
         });
       });
