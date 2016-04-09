@@ -1,7 +1,8 @@
 $(document).ready(function(){
+console.log('url:/api/activities/'+ $(this).attr('data-activity-id'));
   $.ajax({
   method: 'GET',
-  url: '/api/activities/' + $(this).attr('data-activity-id'),
+  url: '/api/activities/' + $('.activity').attr('data-activity-id'),
   success: oneActivitySuccess
   });
 //close document.ready

@@ -1,6 +1,6 @@
 #activityTarget h2{
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 #activityTarget img{
@@ -9,12 +9,13 @@
   margin-left: -15px;
 }
 
-#activityTarget h4{
-  margin-left: 40px;
-
-}
 
 #activityTarget .activity{
-  background-color: #f5f5f5;
-  width:650px;
+  background-color: white;
+  width: 970px;
+}
+
+
+#activityInfo {
+  margin-top: 15px;
 }

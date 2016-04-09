@@ -9,8 +9,7 @@ var mongoose = require('mongoose'),
     schedule: String,
     location: String,
     website: String,
-    //contact_info: {email: String, phone_num: String},
-    image_url:String,
+    image_url: String,
     instructor: Instructor.schema
   });
 

@@ -19,6 +19,10 @@
 
     <!-- handlebars -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
+    <!--bootstrap components -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
     <!-- APPLICATION SCRIPTS -->
     <script src="/scripts/activities.js"></script>
   </head>
@@ -37,28 +41,78 @@
         </div>
       </div>
     </nav>
-    <header>
-      <div class=row>
-    </header>
       <div class="container">
         <div id="activityTarget">
+          <!--div class="col-xs-6"-->
           <script id="activity-template" type="text/x-handlebars-template">
-            <div class="row">
-              <h2>Activity List</h2>
-            </div>
-            {{#each activities}}
-              <div class="activity row">
-                <div class="col-xs-3">
-                  <img src={{image_url}}><a href="/activity/"{{_id}}></img>
+            <!--div class="row"-->
+              {{#each activities}}
+                <div class="activity row" data-activity-id={{id}}>
+                  <div class="col-xs-3">
+                    <img src={{image_url}}></img>
+                  </div>
+                  <div class"col-xs-9">
+                    <div><h4>{{activity_name}}</h4></div>
+                    <div id="activityInfo" class="row">
+                        <h5>Description: {{description}}</h5><br>
+                        <h5>Location: {{location}}</h5><br>
+                        <a href={{website}}>website</a><br>
+                        <h5>Email: {{instructor.email}}</h5>
+                    </div>
+                    <button id="deleteActivity" class="btn btn-primary" type="button">Delete Activity</button>
+                    <button id="updateActivity" class="btn btn-primary" type="button">Update Activity</button>
+                  </div>
                 </div>
-                <div class="col-xs-6">
-                  <h4>{{activity_name}}</h4>
-                </div>
-              </div>
-              <hr>
-            {{/each}}
+                <hr>
+              {{/each}}
+            <!--/div-->
           </script>
-        </div>
+        <!--/div-->
       </div>
+    </div>
+
+
+
+
+      <!-- begin activityModal: this is not visible until .modal() is called -->
+      <div class="modal fade" tabindex="-1" role="dialog" id="activityModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{activity_name}}</h4>
+              </div>
+              <div class="modal-body">
+
+                <fieldset class='form-horizontal'>
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for="activityName">Activity Name</label>
+                    <div class="col-md-4">
+                      <input id="activityName" name="activityName" type="text" placeholder="" class="form-control input-md" required="">
+                    </div>
+                  </div>
+
+                  <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-md-4 control-label" for="description">Description</label>
+                    <div class="col-md-4">
+                      <input id="description" name="description" type="text" placeholder="" class="form-control input-md">
+                    </div>
+                  </div>
+                </fieldset>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveActivity">Save changes</button>
+              </div>
+
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+
   </body>
 </html>
