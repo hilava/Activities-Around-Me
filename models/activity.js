@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
     website: String,
     //contact_info: {email: String, phone_num: String},
     image_url:String,
-    instructor:{type: Schema.Types.ObjectId, ref: 'Instructor'}
+    instructor: Instructor.schema
   });
 
 var Activity = mongoose.model('Activity', ActivitySchema);

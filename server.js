@@ -15,9 +15,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // serve static files from public folder
 app.use(express.static(__dirname + '/public'));
 
-
-
-
 /**********
  * ROUTES *
  **********/
@@ -40,12 +37,14 @@ app.get('/activityList', function homepage (req, res) {
 app.get('/api', controllers.api.index);
 
 app.get('/api/activities', controllers.activities.index);
-//
-// app.post('/api/albums', controllers.albums.create);
-//
-// app.get('/api/albums/:albumId', controllers.albums.show);
-//
-// app.post('/api/albums/:albumId/songs', controllers.albumsSongs.create);
+
+app.get('/api/activity/:_id', controllers.activities.show);
+
+app.post('/api/activity', controllers.activities.create);
+
+app.put('/api/activity/:_id', controllers.activities.update);
+
+app.delete('/api/activity/:_id', controllers.activities.delete);
 
 
 

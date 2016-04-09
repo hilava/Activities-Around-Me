@@ -81,7 +81,7 @@ var activityList = [ {activity_name: "Hebrew Song & Movement",
                         schedule: "Dates and times vary, please refer to website below",
                         location: "Los Altos, CA",
                         website:"https://www.facebook.com/halopottery?_rdr=p",
-                        image_url:"/images/halp_pottery.jpg",
+                        image_url:"/images/halo_pottery.jpg",
                         instructor:"Hila Itzhak"
                       }
                     ];

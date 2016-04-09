@@ -44,10 +44,9 @@
         <div id="activityTarget">
           <script id="activity-template" type="text/x-handlebars-template">
             <div class="row">
-              <h2>{{category}} Activity List</h2>
+              <h2>Activity Information</h2>
             </div>
-            {{#each activities}}
-              <div class="activity row">
+              <div class="activity row" data-activity-id={{_id}}>
                 <div class="col-xs-3">
                   <img src={{image_url}}>
                 </div>
@@ -55,8 +54,6 @@
                   <h4>{{activity_name}}</h4>
                 </div>
               </div>
-              <hr>
-            {{/each}}
           </script>
         </div>
       </div>

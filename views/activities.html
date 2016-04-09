@@ -44,12 +44,12 @@
         <div id="activityTarget">
           <script id="activity-template" type="text/x-handlebars-template">
             <div class="row">
-              <h2>{{category}} Activity List</h2>
+              <h2>Activity List</h2>
             </div>
             {{#each activities}}
               <div class="activity row">
                 <div class="col-xs-3">
-                  <img src={{image_url}}>
+                  <img src={{image_url}}><a href="/activity/"{{_id}}></img>
                 </div>
                 <div class="col-xs-6">
                   <h4>{{activity_name}}</h4>
