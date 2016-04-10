@@ -29,7 +29,7 @@ function destroy(req, res){
 }
 
 //create new activity_name
-app.post('/api/activities', function(req, res){
+function create(req, res){
   //create the db doument and assign values to its attributes
   var newActivity = new db.Activity({
     category: req.body.category,
@@ -45,17 +45,17 @@ app.post('/api/activities', function(req, res){
     //add the found instructor to the new activity
     newActivity.instructor = foundInstructor;
     //save newActivity to the db
-    newActivity.save(function(err,book){
+    newActivity.save(function(err,savedActivity){
       if(err){consoler.log("Save Error: " + err);}
       //send back the new activity object
-      res.json(newActivity);
+      res.json(savedActivity);
     });
   });
-});
+}
 
 // export public methods here
 module.exports = {
-  //create: create,
+  create: create,
   show: show,
   destroy: destroy,
   // update: update

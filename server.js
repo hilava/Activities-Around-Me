@@ -29,9 +29,6 @@ app.get('/', function homepage (req, res) {
 app.get('/activityList', function (req, res) {
   res.sendFile(__dirname + '/views/activities.html');
 });
-// app.get('/activity', function (req, res) {
-//   res.sendFile(__dirname + '/views/activity.html');
-// });
 
 /*
  * JSON API Endpoints
@@ -43,7 +40,7 @@ app.get('/api', controllers.api.index);
 
 app.get('/api/activities/:_id', controllers.activities.show);
 
-//app.post('/api/activities', controllers.activities.create);
+app.post('/api/activities', controllers.activities.create);
 
 // app.put('/api/activities/:_id', controllers.activities.update);
 

@@ -30,11 +30,16 @@ $(document).ready(function(){
   $('#saveActivity').on('click', function(e){
     //add album submit button
     e.preventDefault();
+    var dataString = "activity_name=" + $('#activity_name').val() + "&category=" + $('#category').val() + "&description=" +
+                    $('#description').val() + "&location=" + $('#location').val() + "&website=" + $('#website').val() + "&instructor=" +
+                    $('#instructor').val() + "&image_url=" + $('#image_url').val();
     $.ajax({
       method: 'POST',
       url: '/api/activities',
-      data: $(this).serialize(),
-      success: addAcrivitySuccess,
+      data: dataString,
+      //"songName=" + $('#songName').val() + "&trackNumber=" + $('#trackNumber').val()
+      //data: $(this).serialize(),
+      success: addActivitySuccess,
       error: addActivityError
     });
   });
@@ -48,16 +53,6 @@ $(document).ready(function(){
       success: deleteActivitySuccess,
       error: deleteActivityError
       });
-  });
-  //add activity
-  $('.form-horizontal').on('submit', function(event){
-    event.preventDefault();
-    $.ajax({
-      method:'POST',
-      url:'/api/albums',
-      data: $(this).serialize(),
-      success: addAlbumSuccess
-    });
   });
 
 //close document.ready
@@ -91,5 +86,20 @@ function deleteActivitySuccess(activity){
 }
 
 function deleteActivityError(err){
-  console.log("error: " + err);
+  console.log("Delete Activity Error: " + err);
+}
+
+function addActivitySuccess(newActivity){
+  //clear form input fields
+  $('#activityModal input').val('');
+  //push new activity to the array
+  ActivitiesArr.push(newActivity);
+  //render all activities
+  $('#activityTarget').empty();
+  var actHtml = template({activities: ActivitiesArr});
+  $('#activityTarget').append(actHtml);
+}
+
+function addActivityError(err){
+    console.log("Add Activity Error: " + err);
 }
