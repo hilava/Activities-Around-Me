@@ -13,7 +13,7 @@ $(document).ready(function(){
 //   success: allActivitesSuccess,
 //   error: allActivitesError
 // });
-  $('.menu img').on('click' ,function(){
+  $('.photo').on('click' ,function(){
     var category = $(this).attr('data-cat');
     console.log("category" + category);
     $.ajax({
