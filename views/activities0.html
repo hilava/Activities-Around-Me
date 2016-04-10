@@ -27,7 +27,6 @@
     <script src="/scripts/activities.js"></script>
   </head>
   <body>
-    <!--navbar-->
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header row">
@@ -42,25 +41,11 @@
         </div>
       </div>
     </nav>
-    <!--end navbar-->
-    <!--Main Menu-->
-    <div class=container>
-      <div class="row menu">
-            <div class="col-md-10 col-md-offset-1">
-              <div class="col-md-4 photo"><img src="/images/kids1.jpg" class="img-responsive center-block gallery" data-cat="Kids">
-                <h4 class="img_cap"><span>Kids</span></h4></div>
-              <div class="col-md-4 photo"><img src="/images/sports2.jpg" class="img-responsive center-block gallery" data-cat="Women's Sports">
-                <h4 class="img_cap"><span>Women's Sports</span></h4></div>
-              <div class="col-md-4 photo"><img src="/images/arts_and_crafts.jpg" class="img-responsive center-block gallery" data-cat="Arts and Crafts">
-                <h4 class="img_cap"><span>Arts and Crafts</span></h4></div>
-            </div>
-      </div>
-      <br>
-      <!--end Main Menu-->
-    </div>
       <div class="container">
         <div id="activityTarget">
+          <!--div class="col-xs-6"-->
           <script id="activity-template" type="text/x-handlebars-template">
+            <!--div class="row"-->
               {{#each activities}}
                 <div class="activity row" data-activity-id={{id}}>
                   <div class="col-xs-3">

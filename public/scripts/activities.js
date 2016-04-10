@@ -13,14 +13,18 @@ $(document).ready(function(){
 //   success: allActivitesSuccess,
 //   error: allActivitesError
 // });
-
-  $.ajax({
-  method: 'GET',
-  url: '/api/activities/',
-  data: {category: category},
-  success: allActivitesSuccess,
-  error: allActivitesError
+  $('.menu img').on('click' ,function(){
+    var category = $(this).attr('data-cat');
+    console.log("category" + category);
+    $.ajax({
+    method: 'GET',
+    url: '/api/activities/',
+    data: {category: category},
+    success: allActivitesSuccess,
+    error: allActivitesError
+    });
   });
+
 
   //listen to click on delete button
   $('#activityTarget').on('click', '#deleteActivityBtn', function(e){
@@ -47,7 +51,8 @@ $(document).ready(function(){
 });
 
 function allActivitesSuccess(activities){
-  // compile handlebars template
+  //render all activities
+  $('#activityTarget').empty();
   var actHtml = template({activities: activities});
   $('#activityTarget').append(actHtml);
   ActivitiesArr = activities;
