@@ -14,16 +14,24 @@ function index(req, res){
 //get one activity
 function show(req, res){
   db.Activity.findOne({_id: req.params._id }, function(err, foundActivity) {
+    if(err){return console.log(err);}
   res.json(foundActivity);
   });
 }
 
 function destroy(req, res){
-  console.log("in the destroy function");
   db.Activity.findOneAndRemove({_id: req.params._id }, function(err, removedActivity) {
-    console.log("removed: " , removedActivity);
+    if(err){return console.log(err);}
   res.json(removedActivity);
 });
+}
+
+function filter(req, res){
+  console.log("req.body: " , req.query.category);
+  db.Activity.find({category: req.query.category}, function (err, activities){
+    if(err){return console.log(err);}
+    res.json(activities) ;
+  });
 }
 
 
@@ -63,4 +71,5 @@ module.exports = {
   show: show,
   destroy: destroy,
   // update: update
+  filter: filter
 };

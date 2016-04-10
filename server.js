@@ -39,7 +39,7 @@ app.get('/activityList', function (req, res) {
 
 app.get('/api', controllers.api.index);
 
-app.get('/api/activities', controllers.activities.index);
+//app.get('/api/activities', controllers.activities.index);
 
 app.get('/api/activities/:_id', controllers.activities.show);
 
@@ -48,6 +48,7 @@ app.get('/api/activities/:_id', controllers.activities.show);
 // app.put('/api/activities/:_id', controllers.activities.update);
 //
 app.delete('/api/activities/:_id', controllers.activities.destroy);
+app.get('/api/activities', controllers.activities.filter);
 
 
 

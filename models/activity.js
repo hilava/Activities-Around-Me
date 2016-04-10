@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 
   var ActivitySchema = new Schema({
     activity_name: String,
-    category: [String],
+    category: String,
     description: String,
     schedule: String,
     location: String,

@@ -1,49 +1,47 @@
 /* CLIENT-SIDE JS*/
 var ActivitiesArr = [];
 var template;
+var category="Women's Sports";
 
 $(document).ready(function(){
   var source = $('#activity-template').html();
   template = Handlebars.compile(source);
 
-  $.ajax({
-  method: 'GET',
-  url: '/api/activities',
-  success: allActivitesSuccess,
-  error: allActivitesError
-});
-
-//listen to click on delete button
-$('#activityTarget').on('click', '#deleteActivityBtn', function(e){
-  e.preventDefault();
-    $.ajax({
-    method: 'DELETE',
-    url: '/api/activities/'+$(this).attr('data-id'),
-    success: deleteActivitySuccess,
-    error: deleteActivityError
-    });
-  
-});
-
-
-
-
-//listen to click on activity
-// $('#activityTarget').on('click', '.activity', function(e) {
-//     //use closest since the activities are not rendered yet on page load. it looks for the closeset activity class under activityTarget
-//     var id= $(this).closest('.activity').data('activity-id');
-//     console.log('id: ',id);
-//     //add a data attribute to the activityModal element after we have activities on our page
-//     $('#activityModal').data('activity-id', id);
-//     $.ajax({
-//     method: 'GET',
-//     url: '/api/activities/' + $('.activity').data('activity-id'),
-//     success: oneActivitySuccess
-//     });
-//
-//     //$('#activityModal').modal();
+//   $.ajax({
+//   method: 'GET',
+//   url: '/api/activities',
+//   success: allActivitesSuccess,
+//   error: allActivitesError
 // });
 
+  $.ajax({
+  method: 'GET',
+  url: '/api/activities/',
+  data: {category: category},
+  success: allActivitesSuccess,
+  error: allActivitesError
+  });
+
+  //listen to click on delete button
+  $('#activityTarget').on('click', '#deleteActivityBtn', function(e){
+    e.preventDefault();
+      $.ajax({
+      method: 'DELETE',
+      url: '/api/activities/'+$(this).attr('data-id'),
+      success: deleteActivitySuccess,
+      error: deleteActivityError
+      });
+  });
+  //add activity
+  $('.form-horizontal').on('submit', function(event){
+    event.preventDefault();
+    $.ajax({
+      method:'POST',
+      url:'/api/albums',
+      data: $(this).serialize(),
+      success: addAlbumSuccess
+    });
+  });
 
 //close document.ready
 });
