@@ -15,9 +15,17 @@ function index(req, res){
 function show(req, res){
   db.Activity.findOne({_id: req.params._id }, function(err, foundActivity) {
   res.json(foundActivity);
-});
-
+  });
 }
+
+function destroy(req, res){
+  console.log("in the destroy function");
+  db.Activity.findOneAndRemove({_id: req.params._id }, function(err, removedActivity) {
+    console.log("removed: " , removedActivity);
+  res.json(removedActivity);
+});
+}
+
 
 //Add new activity (POST)
 // app.post('/api/activity', function(req, res){
@@ -52,7 +60,7 @@ function show(req, res){
 module.exports = {
   index: index,
   //create: create,
-  show: show
-  // destroy: destroy,
+  show: show,
+  destroy: destroy,
   // update: update
 };

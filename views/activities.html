@@ -59,8 +59,10 @@
                         <a href={{website}}>website</a><br>
                         <h5>Email: {{instructor.email}}</h5>
                     </div>
-                    <button id="deleteActivity" class="btn btn-primary" type="button">Delete Activity</button>
-                    <button id="updateActivity" class="btn btn-primary" type="button">Update Activity</button>
+                    <div class='panel-footer'>
+                      <button id="deleteActivityBtn" class="btn btn-primary" type="button" data-id={{_id}}>Delete Activity</button>
+                      <button id="updateActivityBtn" class="btn btn-primary" type="button" data-id={{_id}}>Update Activity</button>
+                    </div>
                   </div>
                 </div>
                 <hr>

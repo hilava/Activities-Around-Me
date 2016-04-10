@@ -1,18 +1,31 @@
 /* CLIENT-SIDE JS*/
-var allActivities;
+var ActivitiesArr = [];
+var template;
 
 $(document).ready(function(){
+  var source = $('#activity-template').html();
+  template = Handlebars.compile(source);
 
   $.ajax({
   method: 'GET',
   url: '/api/activities',
-  success: allActivitesSuccess
+  success: allActivitesSuccess,
+  error: allActivitesError
 });
 
-// //listen to click on the activity $(this).collaps()
-// $('#activityTarget').on('click', '.activity', function(e) {
-//   $(this).closest('.collapse').collapse();
-// });
+//listen to click on delete button
+$('#activityTarget').on('click', '#deleteActivityBtn', function(e){
+  e.preventDefault();
+    $.ajax({
+    method: 'DELETE',
+    url: '/api/activities/'+$(this).attr('data-id'),
+    success: deleteActivitySuccess,
+    error: deleteActivityError
+    });
+  
+});
+
+
 
 
 //listen to click on activity
@@ -37,32 +50,30 @@ $(document).ready(function(){
 
 function allActivitesSuccess(activities){
   // compile handlebars template
-  var source = $('#activity-template').html();
-  var template = Handlebars.compile(source);
   var actHtml = template({activities: activities});
   $('#activityTarget').append(actHtml);
+  ActivitiesArr = activities;
 }
 
-function oneActivitySuccess(activity){
-  console.log("client side receiving activity: " , activity);
-  // compile handlebars template
-  // var source = $('#activity-modal-template').html();
-  // var template = Handlebars.compile(source);
-  // var actHtml = template({activity: activity});
-
-  ////$('#activityTarget').append(actHtml);
+function allActivitesError(err){
+  console.log("error: " + err);
 }
 
-//needs editing
 function deleteActivitySuccess(activity){
-  console.log(activity);
   var activityId = activity._id;
-  console.log('show activity', activityId);
-  // find the activity with the correct ID
-  for(var index = 0; index < allActivities.length; index++) {
-    if(allActivities[index]._id === activityId) {
-      allActivities.splice(index, 1);
+  for (var i=0; i<ActivitiesArr.length; i++) {
+    console.log("id1: " + ActivitiesArr[i]._id + "id2: " + activityId);
+    if (ActivitiesArr[i]._id === activityId) {
+      ActivitiesArr.splice(i, 1);
       break;
     }
   }
+  //render all activities
+  $('#activityTarget').empty();
+  var actHtml = template({activities: ActivitiesArr});
+  $('#activityTarget').append(actHtml);
+}
+
+function deleteActivityError(err){
+  console.log("error: " + err);
 }

@@ -43,11 +43,11 @@ app.get('/api/activities', controllers.activities.index);
 
 app.get('/api/activities/:_id', controllers.activities.show);
 
-// app.post('/api/activity', controllers.activities.create);
+// app.post('/api/activities', controllers.activities.create);
 //
-// app.put('/api/activity/:_id', controllers.activities.update);
+// app.put('/api/activities/:_id', controllers.activities.update);
 //
-// app.delete('/api/activity/:_id', controllers.activities.delete);
+app.delete('/api/activities/:_id', controllers.activities.destroy);
 
 
 
