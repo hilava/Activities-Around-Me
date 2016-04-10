@@ -20,6 +20,7 @@ function show(req, res){
   });
 }
 
+//delete activity
 function destroy(req, res){
   db.Activity.findOneAndRemove({_id: req.params._id }, function(err, removedActivity) {
     if(err){return console.log(err);}
@@ -27,36 +28,30 @@ function destroy(req, res){
 });
 }
 
-
-
-//Add new activity (POST)
-// app.post('/api/activity', function(req, res){
-//   console.log('add new activity');
-//   //create new movie with form data ('req.body')
-//   var newActivity = new db.Activity({
-//     activity_name: req.body.activity_name,
-//     category: req.body.category,
-//     description: req.body.description,
-//     schedule: req.body.schedule,
-//     location: req.body.location,
-//     website: req.body.website,
-//     image_url: req.body.image_url,
-//     instructor: req.body.instructor
-//   });
-//   //save newMovie to db
-//   newMovie.save(function(err, movies){
-//     if (err){ return console.log("save error: " + err);}
-//     console.log("movie saved: " + movie);
-//     res.json(movie);
-//   });
-// });
-
-
-
-
-
-
-
+//create new activity_name
+app.post('/api/activities', function(req, res){
+  //create the db doument and assign values to its attributes
+  var newActivity = new db.Activity({
+    category: req.body.category,
+    activity_name: req.body.activity_name,
+    description: req.body.description,
+    location: req.body.location,
+    website: req.body.website,
+    image_url: req.body.image_url
+  });
+  //find the instructor from req.body
+  db.Instructor.findOne({inst_name: req.body.instructor}, function(err, foundInstructor){
+    if(err){consoler.log("Find Instructor Error: " + err);}
+    //add the found instructor to the new activity
+    newActivity.instructor = foundInstructor;
+    //save newActivity to the db
+    newActivity.save(function(err,book){
+      if(err){consoler.log("Save Error: " + err);}
+      //send back the new activity object
+      res.json(newActivity);
+    });
+  });
+});
 
 // export public methods here
 module.exports = {
