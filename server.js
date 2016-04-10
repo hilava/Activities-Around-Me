@@ -43,14 +43,13 @@ app.get('/api', controllers.api.index);
 
 app.get('/api/activities/:_id', controllers.activities.show);
 
-// app.post('/api/activities', controllers.activities.create);
-//
+//app.post('/api/activities', controllers.activities.create);
+
 // app.put('/api/activities/:_id', controllers.activities.update);
-//
+
 app.delete('/api/activities/:_id', controllers.activities.destroy);
+
 app.get('/api/activities', controllers.activities.filter);
-
-
 
 
 /**********

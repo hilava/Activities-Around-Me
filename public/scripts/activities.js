@@ -7,12 +7,7 @@ $(document).ready(function(){
   var source = $('#activity-template').html();
   template = Handlebars.compile(source);
 
-//   $.ajax({
-//   method: 'GET',
-//   url: '/api/activities',
-//   success: allActivitesSuccess,
-//   error: allActivitesError
-// });
+  //listen to click on a menu category
   $('.photo').on('click' ,function(){
     var category = $(this).attr('data-cat');
     console.log("category" + category);
@@ -25,8 +20,26 @@ $(document).ready(function(){
     });
   });
 
+  //listen to click on add activity button
+  $('#addActivityBtn').on('click', function(e){
+    e.preventDefault();
+    $('#activityModal').modal();
+  });
 
-  //listen to click on delete button
+  //listen to click on add activity-->save changes button
+  $('#saveActivity').on('click', function(e){
+    //add album submit button
+    e.preventDefault();
+    $.ajax({
+      method: 'POST',
+      url: '/api/activities',
+      data: $(this).serialize(),
+      success: addAcrivitySuccess,
+      error: addActivityError
+    });
+  });
+
+  //listen to click on delete activity button
   $('#activityTarget').on('click', '#deleteActivityBtn', function(e){
     e.preventDefault();
       $.ajax({

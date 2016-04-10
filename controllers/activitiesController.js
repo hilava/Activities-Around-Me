@@ -3,9 +3,10 @@
  ************/
 var db = require('../models');
 
-// get all activities
-function index(req, res){
-  db.Activity.find(function (err, activities){
+//get all activities by category
+function filter(req, res){
+  console.log("req.body: " , req.query.category);
+  db.Activity.find({category: req.query.category}, function (err, activities){
     if(err){return console.log(err);}
     res.json(activities) ;
   });
@@ -26,13 +27,6 @@ function destroy(req, res){
 });
 }
 
-function filter(req, res){
-  console.log("req.body: " , req.query.category);
-  db.Activity.find({category: req.query.category}, function (err, activities){
-    if(err){return console.log(err);}
-    res.json(activities) ;
-  });
-}
 
 
 //Add new activity (POST)
@@ -66,7 +60,6 @@ function filter(req, res){
 
 // export public methods here
 module.exports = {
-  index: index,
   //create: create,
   show: show,
   destroy: destroy,
