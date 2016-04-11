@@ -65,7 +65,9 @@ function allActivitesSuccess(activities){
   $('#activityTarget').empty();
   var actHtml = template({activities: activities});
   $('#activityTarget').append(actHtml);
+  $('.actiivty').focus();
   ActivitiesArr = activities;
+
 }
 
 function allActivitesError(err){
