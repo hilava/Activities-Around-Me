@@ -125,8 +125,6 @@ function activitesByCatSuccess(activities){
   $('#activityTarget').empty();
   activitiesArr = activities;
   render(activitiesArr);
-  //jump to the activity list
-  location.hash = "activityTarget";
 }
 
 function activitesByCatError(err){

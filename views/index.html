@@ -11,6 +11,7 @@
 
     <!-- custom styles -->
     <link rel="stylesheet" type="text/css" href="/styles/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
 
     <!-- jquery -->
     <!-- Note: using subresource integrity; see: https://en.wikipedia.org/wiki/Subresource_Integrity -->
@@ -41,7 +42,6 @@
           <div class="col-xs-9">
             <strong>Activities Around Me</strong>
           </div>
-
         </div>
       </div>
     </nav>
@@ -49,8 +49,8 @@
     <!--Main Menu-->
     <div class=container>
       <div class="row menu">
-            <a href="#activityContainer"><div class="col-xs-4 photo" data-cat="Kids"><img src="/images/kids1.jpg" class="img-responsive center-block gallery">
-              <h5 class="img_cap"><span>Kids</span></h5></div></a>
+            <div class="col-xs-4 photo" data-cat="Kids"><img src="/images/kids1.jpg" class="img-responsive center-block gallery">
+              <h5 class="img_cap"><span>Kids</span></h5></div>
             <div class="col-xs-4 photo" data-cat="Women's Sports"><img src="/images/sports2.jpg" class="img-responsive center-block gallery">
               <h5 class="img_cap"><span>Women's Sports</span></h5></div>
             <div class="col-xs-4 photo" data-cat="Arts and Crafts"><img src="/images/arts_and_crafts.jpg" class="img-responsive center-block gallery">
@@ -59,8 +59,6 @@
       <br>
       <!--end Main Menu-->
     </div>
-
-      <div><a name="activityContainer"></a></div>
       <div class="container">
         <div id="activityTarget">
           <script id="activity-template" type="text/x-handlebars-template">
@@ -87,7 +85,6 @@
                     </div>
                   </div>
                 </div>
-                <hr>
               {{/each}}
             <!--/div-->
           </script>
