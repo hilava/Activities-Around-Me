@@ -15,22 +15,25 @@
 .img_cap {
   position: absolute;
   margin-top: 30px;
-  left:30px;
-  bottom: 30px;
+  left:0px;
+  bottom: 100px;
   width: 100%;
-  height: :100%
+  height: :100%;
+  text-align: center;
 }
 .img_cap span {
   color: white;
-  font-size: 50px;
+  font-size: 30px;
+
 }
 .row .photo img{
-  height:200px;
+  height:300px;
+  width:300px;
   margin-top: 30px;
+  border-radius: 25px;
 }
-
-.menu{
-    margin-bottom: 50px;
+.row .photo{
+  margin-top: 150px;
 }
 
 body{
@@ -38,8 +41,7 @@ body{
 }
 
 #addActivityBtn{
-  margin-top: 100px;
-  margin-right:50px;
+margin-top: 6px;
 }
 
 #activityTarget h2{

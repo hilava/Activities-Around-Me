@@ -104,7 +104,6 @@ $(document).ready(function(){
       });
   });
 
-
 //close document.ready
 });
 
@@ -120,9 +119,6 @@ function allActivitesError(err){
 function activitesByCatSuccess(activities){
   //render all activities for the selected category
   $('#activityTarget').empty();
-  // var actHtml = template({activities: activities});
-  // $('#activityTarget').append(actHtml);
-  // $('.actiivty').focus();
   activitiesArr = activities;
   render(activitiesArr);
 }
@@ -141,10 +137,6 @@ function deleteActivitySuccess(activity){
       break;
     }
   }
-  //render all activities without the deleted activity
-  // $('#activityTarget').empty();
-  // var actHtml = template({activities: activitiesArr});
-  // $('#activityTarget').append(actHtml);
   render(activitiesArr);
 }
 
