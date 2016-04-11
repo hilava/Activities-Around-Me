@@ -14,14 +14,18 @@ $(document).ready(function(){
   success: allActivitesSuccess,
   error: allActivitesError
   });
+
+
   //listen to click on a menu category (photo)
   $('.photo').on('click' ,function(){
-    var category = $(this).attr('data-cat');
-    //remove border from all 3 category photo
-    $('.row .photo').css("border","0");
-    //add border to the selected category phot
-    $(this).css("border", "10px solid #021a40");
+    //after selection, fade out the 3 categories
+    $('.photo').addClass('inactive');
+    //highlight the slected category
+    $(this).removeClass('inactive');
+    $(this).addClass('active');
+
     //get all activities of the selected category
+    var category = $(this).attr('data-cat');
     $.ajax({
     method: 'GET',
     url: '/api/activitiesByCategory',
@@ -121,6 +125,8 @@ function activitesByCatSuccess(activities){
   $('#activityTarget').empty();
   activitiesArr = activities;
   render(activitiesArr);
+  //jump to the activity list
+  location.hash = "activityTarget";
 }
 
 function activitesByCatError(err){

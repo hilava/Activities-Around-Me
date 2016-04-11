@@ -31,6 +31,8 @@
   width:300px;
   margin-top: 30px;
   border-radius: 25px;
+  background-color: #565459;
+  opacity:1;
 }
 .row .photo{
   margin-top: 150px;
@@ -58,12 +60,21 @@ margin-top: 6px;
 #activityTarget .activity{
   background-color: white;
   width: 970px;
+  margin-top: 50px;
 }
 
 #activityTarget{
-  margin-left: 155px;
+  margin-left: 70px;
 }
 
 #activityInfo {
   margin-top: 15px;
+}
+
+.active{
+  opacity:1;
+}
+
+.inactive{
+  opacity:0.3;
 }
