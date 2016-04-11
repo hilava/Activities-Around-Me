@@ -26,9 +26,9 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function homepage (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
-app.get('/activityList', function (req, res) {
-  res.sendFile(__dirname + '/views/activities.html');
-});
+// app.get('/activityList', function (req, res) {
+//   res.sendFile(__dirname + '/views/activities.html');
+// });
 
 /*
  * JSON API Endpoints

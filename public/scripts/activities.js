@@ -33,7 +33,6 @@ $(document).ready(function(){
 
   //listen to click on add activity-->save changes button
   $('#saveActivity').on('click', function(e){
-    //add album submit button
     e.preventDefault();
     var dataString = "activity_name=" + $('#activity_name').val() + "&category=" + $('#category').val() + "&description=" +
                     $('#description').val() + "&location=" + $('#location').val() + "&website=" + $('#website').val() + "&instructor=" +
