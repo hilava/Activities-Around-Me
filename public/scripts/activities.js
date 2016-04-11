@@ -45,9 +45,24 @@ $(document).ready(function(){
     e.preventDefault();
     //open the add activity modal
     $('#activityModal').modal();
+    var activityId = $(this).attr('data-id');
+    //find the activty in activitiesArr and populate the modal input fields
+    activitiesArr.forEach(function(activity, i){
+      if (activity._id === activityId) {
+        //populate modal input fields
+        $('#activity_name').val(activity.activity_name);
+        $('#category').val(activity.category);
+        $('#description').val(activity.description);
+        $('#location').val(activity.location);
+        $('#website').val(activity.website);
+        $('#image_url').val(activity.image_url);
+        $('#instructor').val(activity.instructor.inst_name);
+      }
+    });
+
     //set data-btnName attribute in order to know what ajax call to use
     $('#activityModal').attr('data-btnName', 'updateActivity');
-    $('#activityModal').attr('data-id', $(this).attr('data-id'));
+    $('#activityModal').attr('data-id', activityId);
   });
 
   //listen to click on save changes button, in activityModal, after add/update activity
