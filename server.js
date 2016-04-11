@@ -26,9 +26,6 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function homepage (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
-// app.get('/activityList', function (req, res) {
-//   res.sendFile(__dirname + '/views/activities.html');
-// });
 
 /*
  * JSON API Endpoints
@@ -36,17 +33,17 @@ app.get('/', function homepage (req, res) {
 
 app.get('/api', controllers.api.index);
 
-//app.get('/api/activities', controllers.activities.index);
+app.get('/api/activities', controllers.activities.index);
 
 app.get('/api/activities/:_id', controllers.activities.show);
 
 app.post('/api/activities', controllers.activities.create);
 
-// app.put('/api/activities/:_id', controllers.activities.update);
+app.put('/api/activities/:_id', controllers.activities.update);
 
 app.delete('/api/activities/:_id', controllers.activities.destroy);
 
-app.get('/api/activities', controllers.activities.filter);
+app.get('/api/activitiesByCategory', controllers.activities.filter);
 
 
 /**********

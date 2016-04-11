@@ -1,13 +1,20 @@
 /* CLIENT-SIDE JS*/
-var ActivitiesArr = [];
+var activitiesArr = [];
 var template;
 var category="Women's Sports";
 
 $(document).ready(function(){
+  //compile HB script
   var source = $('#activity-template').html();
   template = Handlebars.compile(source);
-
-  //listen to click on a menu category
+  //on page load, retrieve all activities and save them to the activitiesArr
+  $.ajax({
+  method: 'GET',
+  url: '/api/activities/',
+  success: allActivitesSuccess,
+  error: allActivitesError
+  });
+  //listen to click on a menu category (photo)
   $('.photo').on('click' ,function(){
     var category = $(this).attr('data-cat');
     //remove border from all 3 category photo
@@ -17,10 +24,10 @@ $(document).ready(function(){
     //get all activities of the selected category
     $.ajax({
     method: 'GET',
-    url: '/api/activities/',
+    url: '/api/activitiesByCategory',
     data: {category: category},
-    success: allActivitesSuccess,
-    error: allActivitesError
+    success: activitesByCatSuccess,
+    error: activitesByCatError
     });
   });
 
@@ -57,53 +64,127 @@ $(document).ready(function(){
       });
   });
 
+  //listen to click on update activity button
+  $('#activityTarget').on('click', '#updateActivityBtn', function(e){
+    e.preventDefault();
+    var dataString = "activity_name=" + $('#activity_name').val() + "&category=" + $('#category').val() + "&description=" +
+                    $('#description').val() + "&location=" + $('#location').val() + "&website=" + $('#website').val() + "&instructor=" +
+                    $('#instructor').val() + "&image_url=" + $('#image_url').val();
+    $.ajax({
+      method:'PUT',
+      url: '/api/activities/'+$(this).attr('data-id'),
+      data: dataString,
+      success: updateActivitySuccess,
+      error: updateActivityError
+    });
+  });
+
 //close document.ready
 });
 
 function allActivitesSuccess(activities){
-  //render all activities
-  $('#activityTarget').empty();
-  var actHtml = template({activities: activities});
-  $('#activityTarget').append(actHtml);
-  $('.actiivty').focus();
-  ActivitiesArr = activities;
-
+  //save activties to the activitiesArr on page load
+  activitiesArr = activities;
 }
 
 function allActivitesError(err){
-  console.log("error: " + err);
+  console.log("All activities error: " + err);
+}
+
+function activitesByCatSuccess(activities){
+  //render all activities for the selected category
+  $('#activityTarget').empty();
+  // var actHtml = template({activities: activities});
+  // $('#activityTarget').append(actHtml);
+  // $('.actiivty').focus();
+  activitiesArr = activities;
+  render(activitiesArr);
+}
+
+function activitesByCatError(err){
+  console.log("Activties by category error: " + err);
 }
 
 function deleteActivitySuccess(activity){
   var activityId = activity._id;
-  for (var i=0; i<ActivitiesArr.length; i++) {
-    console.log("id1: " + ActivitiesArr[i]._id + "id2: " + activityId);
-    if (ActivitiesArr[i]._id === activityId) {
-      ActivitiesArr.splice(i, 1);
+  //itirate through the array and remove the deleted acivity
+  for (var i=0; i<activitiesArr.length; i++) {
+    if (activitiesArr[i]._id === activityId) {
+      activitiesArr.splice(i, 1);
+      //once the activity has been found, exit loop
       break;
     }
   }
-  //render all activities
-  $('#activityTarget').empty();
-  var actHtml = template({activities: ActivitiesArr});
-  $('#activityTarget').append(actHtml);
+  //render all activities without the deleted activity
+  // $('#activityTarget').empty();
+  // var actHtml = template({activities: activitiesArr});
+  // $('#activityTarget').append(actHtml);
+  render(activitiesArr);
 }
 
 function deleteActivityError(err){
-  console.log("Delete Activity Error: " + err);
+  console.log("Delete activity error: " + err);
 }
 
 function addActivitySuccess(newActivity){
   //clear form input fields
   $('#activityModal input').val('');
+  $('#activityModal select').val('');
   //push new activity to the array
-  ActivitiesArr.push(newActivity);
-  //render all activities
+  activitiesArr.push(newActivity);
   alert("Activity " + newActivity.activity_name + " Has Been Added, Thank You!");
+  //close the modal
   $('#activityModal').modal('toggle');
-
+  //remove border from all 3 category photo
+  $('.row .photo').css("border","0");
+  //remove activties from page
+  $('#activityTarget').empty();
 }
 
 function addActivityError(err){
-    console.log("Add Activity Error: " + err);
+    console.log("Add activity error: " + err);
+}
+
+function updateActivitySuccess(updatedActivity){
+  //clear form input fields
+  $('#activityModal input').val('');
+  $('#activityModal select').val('');
+  var activityId = updatedActivity._id;
+  //find the updated activity in the activities array, remove it and add the updated activity
+  activitiesArr.forEach(function(activity, i){
+    //itirate through the array and remove the deleted acivity
+      if (activity._id === activityId) {
+        //remove the original activity
+        activitiesArr.splice(i, 1);
+        //add the updated actiivty
+        activitiesArr.push(activity);
+        //once the activity has been found, exit loop
+        //break;
+      }
+  });
+
+  alert("Activity " + updatedActivity.activity_name + " Has Been Updated, Thank You!");
+  //close the modal
+  $('#activityModal').modal('toggle');
+  //remove border from all 3 category photo
+  $('.row .photo').css("border","0");
+  //remove activties from page
+  $('#activityTarget').empty();
+
+}
+
+function updateActivityError(){
+  console.log("Update activity error: " + err);
+}
+
+
+//render acitivities
+function render(activities){
+  //remove activities
+  $('#activityTarget').empty();
+  var actHtml = template({activities: activities});
+  //prepend activities
+  $('#activityTarget').prepend(actHtml);
+  //set focus on the activty area
+  $('.actiivty').focus();
 }
