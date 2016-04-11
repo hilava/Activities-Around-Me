@@ -10,7 +10,11 @@ $(document).ready(function(){
   //listen to click on a menu category
   $('.photo').on('click' ,function(){
     var category = $(this).attr('data-cat');
-    console.log("category" + category);
+    //remove border from all 3 category photo
+    $('.row .photo').css("border","0");
+    //add border to the selected category phot
+    $(this).css("border", "10px solid #021a40");
+    //get all activities of the selected category
     $.ajax({
     method: 'GET',
     url: '/api/activities/',
@@ -23,6 +27,7 @@ $(document).ready(function(){
   //listen to click on add activity button
   $('#addActivityBtn').on('click', function(e){
     e.preventDefault();
+    //open the add activity modal
     $('#activityModal').modal();
   });
 
@@ -37,8 +42,6 @@ $(document).ready(function(){
       method: 'POST',
       url: '/api/activities',
       data: dataString,
-      //"songName=" + $('#songName').val() + "&trackNumber=" + $('#trackNumber').val()
-      //data: $(this).serialize(),
       success: addActivitySuccess,
       error: addActivityError
     });
@@ -95,9 +98,9 @@ function addActivitySuccess(newActivity){
   //push new activity to the array
   ActivitiesArr.push(newActivity);
   //render all activities
-  $('#activityTarget').empty();
-  var actHtml = template({activities: ActivitiesArr});
-  $('#activityTarget').append(actHtml);
+  alert("Activity " + newActivity.activity_name + " Has Been Added, Thank You!");
+  $('#activityModal').modal('toggle');
+
 }
 
 function addActivityError(err){

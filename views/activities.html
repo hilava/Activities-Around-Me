@@ -79,7 +79,7 @@
                     </div>
                     <div class='panel-footer'>
                       <button id="deleteActivityBtn" class="btn btn-primary" type="button" data-id={{_id}}>Delete Activity</button>
-                      <button id="updateActivityBtn" class="btn btn-primary" type="button" data-id={{_id}}>Update Activity</button>
+                      <!--button id="updateActivityBtn" class="btn btn-primary" type="button" data-id={{_id}}>Update Activity</button-->
                     </div>
                   </div>
                 </div>
@@ -113,7 +113,12 @@
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="category">Categoty</label>
                   <div class="col-md-4">
-                    <input id="category" name="category" type="text" placeholder="" class="form-control input-md">
+                    <!--input id="category" name="category" type="text" placeholder="" class="form-control input-md"-->
+                    <select id="category" name="category" class="form-control input-md">
+                      <option value="Kids">Kids</option>
+                      <option value="Women's Sports">Women's Sports</option>
+                      <option value="Arts and Crafts">Arts and Crafts</option>
+                    </select>
                   </div>
                 </div>
                 <!-- Text input-->
@@ -134,14 +139,14 @@
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="website">Website url</label>
                   <div class="col-md-4">
-                    <input id="website" name="website" type="text" placeholder="" class="form-control input-md">
+                    <input id="website" name="website" type="url" placeholder="" class="form-control input-md">
                   </div>
                 </div>
                 <!-- Text input-->
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="image_url">Image url</label>
                   <div class="col-md-4">
-                    <input id="image_url" name="image_url" type="text" placeholder="" class="form-control input-md">
+                    <input id="image_url" name="image_url" type="url" placeholder="" class="form-control input-md">
                   </div>
                 </div>
                 <!-- Text input-->
@@ -155,7 +160,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary" id="saveActivity">Save changes</button>
+              <button type="button" class="btn btn-primary" id="saveActivity">Save changes</button>
             </div>
 
         </div><!-- /.modal-content -->
