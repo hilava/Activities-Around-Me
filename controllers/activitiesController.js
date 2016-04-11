@@ -72,20 +72,19 @@ function update(req, res){
     foundActivity.location = req.body.location;
     foundActivity.website = req.body.website;
     foundActivity.image_url = req.body.image_url;
-  });
-  //find the instructor from req.body
-  db.Instructor.findOne({inst_name: req.body.instructor}, function(err, foundInstructor){
-    if(err){console.log("Find Instructor Error: " + err);}
-    //add the found instructor to the new activity
-    foundActivity.instructor = foundInstructor;
-    //save updated activity to the db
-    foundActivity.save(function(err,savedActivity){
-      if(err){consoler.log("Save Error: " + err);}
-      //send back the new activity object
-      res.json(savedActivity);
+    //find the instructor from req.body
+    db.Instructor.findOne({inst_name: req.body.instructor}, function(err, foundInstructor){
+      if(err){console.log("Find Instructor Error: " + err);}
+      //add the found instructor to the new activity
+      foundActivity.instructor = foundInstructor;
+      //save updated activity to the db
+      foundActivity.save(function(err,savedActivity){
+        if(err){consoler.log("Save Error: " + err);}
+        //send back the new activity object
+        res.json(savedActivity);
+      });
     });
   });
-
 }
 
 // export public methods here

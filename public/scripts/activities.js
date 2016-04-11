@@ -36,21 +36,44 @@ $(document).ready(function(){
     e.preventDefault();
     //open the add activity modal
     $('#activityModal').modal();
+    //set data-btnName attribute in order to know what ajax call to use
+    $('#activityModal').data('data-btnName', 'addActivity');
+  });
+  //listen to click on update activity button
+  $('#activityTarget').on('click', '#updateActivityBtn', function(e){
+    e.preventDefault();
+    //open the add activity modal
+    $('#activityModal').modal();
+    //set data-btnName attribute in order to know what ajax call to use
+    $('#activityModal').attr('data-btnName', 'updateActivity');
   });
 
-  //listen to click on add activity-->save changes button
+  //listen to click on save changes button, in activityModal, after add/update activity
   $('#saveActivity').on('click', function(e){
     e.preventDefault();
     var dataString = "activity_name=" + $('#activity_name').val() + "&category=" + $('#category').val() + "&description=" +
                     $('#description').val() + "&location=" + $('#location').val() + "&website=" + $('#website').val() + "&instructor=" +
                     $('#instructor').val() + "&image_url=" + $('#image_url').val();
-    $.ajax({
-      method: 'POST',
-      url: '/api/activities',
-      data: dataString,
-      success: addActivitySuccess,
-      error: addActivityError
-    });
+    if($('#activityModal').attr('data-btnName') === 'addActivity') {
+      //ajax call to add activity
+      $.ajax({
+        method: 'POST',
+        url: '/api/activities',
+        data: dataString,
+        success: addActivitySuccess,
+        error: addActivityError
+      });
+    }
+    else if($('#activityModal').attr('data-btnName') === 'updateActivity') {
+      //ajax call to update activity
+      $.ajax({
+        method:'PUT',
+        url: '/api/activities/'+$('#updateActivityBtn').attr('data-id'),
+        data: dataString,
+        success: updateActivitySuccess,
+        error: updateActivityError
+      });
+    }
   });
 
   //listen to click on delete activity button
@@ -64,20 +87,6 @@ $(document).ready(function(){
       });
   });
 
-  //listen to click on update activity button
-  $('#activityTarget').on('click', '#updateActivityBtn', function(e){
-    e.preventDefault();
-    var dataString = "activity_name=" + $('#activity_name').val() + "&category=" + $('#category').val() + "&description=" +
-                    $('#description').val() + "&location=" + $('#location').val() + "&website=" + $('#website').val() + "&instructor=" +
-                    $('#instructor').val() + "&image_url=" + $('#image_url').val();
-    $.ajax({
-      method:'PUT',
-      url: '/api/activities/'+$(this).attr('data-id'),
-      data: dataString,
-      success: updateActivitySuccess,
-      error: updateActivityError
-    });
-  });
 
 //close document.ready
 });
@@ -147,9 +156,11 @@ function addActivityError(err){
 
 function updateActivitySuccess(updatedActivity){
   //clear form input fields
+  console.log("updateActivitySuccess function");
   $('#activityModal input').val('');
   $('#activityModal select').val('');
   var activityId = updatedActivity._id;
+  console.log("activity id: " + activityId);
   //find the updated activity in the activities array, remove it and add the updated activity
   activitiesArr.forEach(function(activity, i){
     //itirate through the array and remove the deleted acivity
