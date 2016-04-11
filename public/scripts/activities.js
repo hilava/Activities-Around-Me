@@ -37,8 +37,9 @@ $(document).ready(function(){
     //open the add activity modal
     $('#activityModal').modal();
     //set data-btnName attribute in order to know what ajax call to use
-    $('#activityModal').data('data-btnName', 'addActivity');
+  $('#activityModal').attr('data-btnName', 'addActivity');
   });
+
   //listen to click on update activity button
   $('#activityTarget').on('click', '#updateActivityBtn', function(e){
     e.preventDefault();
@@ -46,6 +47,7 @@ $(document).ready(function(){
     $('#activityModal').modal();
     //set data-btnName attribute in order to know what ajax call to use
     $('#activityModal').attr('data-btnName', 'updateActivity');
+    $('#activityModal').attr('data-id', $(this).attr('data-id'));
   });
 
   //listen to click on save changes button, in activityModal, after add/update activity
@@ -68,7 +70,7 @@ $(document).ready(function(){
       //ajax call to update activity
       $.ajax({
         method:'PUT',
-        url: '/api/activities/'+$('#updateActivityBtn').attr('data-id'),
+        url: '/api/activities/' + $('#activityModal').attr('data-id'),
         data: dataString,
         success: updateActivitySuccess,
         error: updateActivityError
