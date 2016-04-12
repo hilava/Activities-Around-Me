@@ -30,4 +30,5 @@
   * User reviews
   * Mobile responsiveness
   * Make location a link to google maps
-  * Make email a link to the email app  
+  * Make email a link to the email app
+    

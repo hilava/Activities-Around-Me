@@ -159,6 +159,9 @@ function addActivitySuccess(newActivity){
   $('#messageModal').modal();
   //remove activties from page
   $('#activityTarget').empty();
+  //remove fade out effect from categories
+  $('.photo').removeClass('inactive');
+  $('.photo').addClass('active');
 }
 
 function addActivityError(err){
@@ -188,6 +191,9 @@ function updateActivitySuccess(updatedActivity){
   $('#messageModal').modal();
   //remove activties from page
   $('#activityTarget').empty();
+  //remove fade out effect from categories
+  $('.photo').removeClass('inactive');
+  $('.photo').addClass('active');
 }
 
 function updateActivityError(){
