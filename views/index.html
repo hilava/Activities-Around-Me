@@ -35,12 +35,12 @@
           <button id="addActivityBtn" class="btn btn-primary" type="button">Add Activity</button>
         </div>
         <div class="navbar-header row">
-          <div class="col-xs-1">
+          <div class="col-md-1">
             <a class="navbar-brand" href="#">
               <img alt="Brand" src="/images/icon.png">
             </a>
           </div>
-          <div class="col-xs-9">
+          <div class="col-md-9">
             <strong>Activities Around Me</strong>
           </div>
         </div>
@@ -50,11 +50,11 @@
     <!--Main Menu-->
     <div class=container>
       <div class="row menu">
-        <div class="col-xs-4 photo" data-cat="Kids"><img src="/images/kids1.jpg" class="img-responsive center-block gallery">
+        <div class="col-md-4 photo" data-cat="Kids"><img src="/images/kids1.jpg" class="img-responsive center-block gallery">
           <h5 class="img_cap"><span>Kids</span></h5></div>
-        <div class="col-xs-4 photo" data-cat="Women's Sports"><img src="/images/sports2.jpg" class="img-responsive center-block gallery">
+        <div class="col-md-4 photo" data-cat="Women's Sports"><img src="/images/sports2.jpg" class="img-responsive center-block gallery">
           <h5 class="img_cap"><span>Women's Sports</span></h5></div>
-        <div class="col-xs-4 photo" data-cat="Arts and Crafts"><img src="/images/arts_and_crafts.jpg" class="img-responsive center-block gallery">
+        <div class="col-md-4 photo" data-cat="Arts and Crafts"><img src="/images/arts_and_crafts.jpg" class="img-responsive center-block gallery">
           <h5 class="img_cap"><span>Arts and Crafts</span></h5></div>
       </div>
       <br>
@@ -65,10 +65,10 @@
           <script id="activity-template" type="text/x-handlebars-template">
               {{#each activities}}
                 <div class="activity row" data-activity-id={{id}}>
-                  <div class="col-xs-3">
+                  <div class="col-md-3">
                     <img src={{image_url}}></img>
                   </div>
-                  <div class"info col-xs-9">
+                  <div class"info col-md-9">
                     <div><h4>{{activity_name}}</h4></div>
                     <div id="activityInfo" class="row">
                         <h5>Description: {{description}}</h5><br>

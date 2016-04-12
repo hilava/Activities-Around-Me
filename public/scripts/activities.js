@@ -46,7 +46,7 @@ $(document).ready(function(){
     $('#activityModal').modal();
     //clear form input fields
     $('#activityModal input').val('');
-    $('#activityModal select').text('');
+    $('#activityModal option').val('');
     //set data-btnName attribute in order to know what ajax call to use
   $('#activityModal').attr('data-btnName', 'addActivity');
   });
@@ -164,7 +164,7 @@ function addActivitySuccess(newActivity){
   $('#messageModal').modal();
   //clear form input fields
   $('#activityModal input').val('');
-  $('#activityModal select').text('');
+  $('#activityModal option').val('');
 }
 
 function addActivityError(err){
@@ -195,7 +195,7 @@ function updateActivitySuccess(updatedActivity){
   //remove activties from page
   //clear form input fields
   $('#activityModal input').val('');
-  $('#activityModal select').text('');
+  $('#activityModal option').val('');
   $('#activityTarget').empty();
   //remove fade out effect from categories
   $('.photo').removeClass('inactive');
