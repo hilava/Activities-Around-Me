@@ -1,0 +1,22 @@
+Triumphs
+full stack app
+full CRUD functionality - specifically update
+
+Challenges
+setting up the app, all the files, boilerplate and seed file
+short term memory, working with the full stack, it was challenging remembering what's the next step
+knowing when to commit
+
+
+Words of Wisdom
+take your time to plan
+brainstrom with friends
+Crash and burn, that's how you learn
+
+
+
+.active { opacity:1; }
+
+.inactive { opacity:0.3; }
+
+$('.photo').addClass('inactive'); $(this).removeClass('inactive'); $(this).addClass('active');

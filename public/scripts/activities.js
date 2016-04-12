@@ -37,8 +37,16 @@ $(document).ready(function(){
   //listen to click on add activity button
   $('#addActivityBtn').on('click', function(e){
     e.preventDefault();
+    //remove activties from page
+    $('#activityTarget').empty();
+    //remove fade out effect from categories
+    $('.photo').removeClass('inactive');
+    $('.photo').addClass('active');
     //open the add activity modal
     $('#activityModal').modal();
+    //clear form input fields
+    $('#activityModal input').val('');
+    $('#activityModal select').text('');
     //set data-btnName attribute in order to know what ajax call to use
   $('#activityModal').attr('data-btnName', 'addActivity');
   });
@@ -148,20 +156,15 @@ function deleteActivityError(err){
 }
 
 function addActivitySuccess(newActivity){
-  //clear form input fields
-  $('#activityModal input').val('');
-  $('#activityModal select').val('');
   //push new activity to the array
   activitiesArr.push(newActivity);
   //close the modal
   $('#activityModal').modal('toggle');
   //open message modal
   $('#messageModal').modal();
-  //remove activties from page
-  $('#activityTarget').empty();
-  //remove fade out effect from categories
-  $('.photo').removeClass('inactive');
-  $('.photo').addClass('active');
+  //clear form input fields
+  $('#activityModal input').val('');
+  $('#activityModal select').text('');
 }
 
 function addActivityError(err){
@@ -190,6 +193,9 @@ function updateActivitySuccess(updatedActivity){
   //open message model
   $('#messageModal').modal();
   //remove activties from page
+  //clear form input fields
+  $('#activityModal input').val('');
+  $('#activityModal select').text('');
   $('#activityTarget').empty();
   //remove fade out effect from categories
   $('.photo').removeClass('inactive');

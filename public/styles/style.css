@@ -24,7 +24,7 @@
 .img_cap span {
   color: white;
   font-size: 30px;
-  font-family: 'Bitter', serif;
+
 
 }
 .row .photo img{
@@ -42,7 +42,7 @@
 body{
   background-image: url("https://i.stack.imgur.com/ClW7h.jpg");
   background-size: cover;
-  font-family: 'Bitter', serif;
+  font-family: 'Carter One', cursive;
 }
 
 #addActivityBtn{
