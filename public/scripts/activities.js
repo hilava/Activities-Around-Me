@@ -15,7 +15,6 @@ $(document).ready(function(){
   error: allActivitesError
   });
 
-
   //listen to click on a menu category (photo)
   $('.photo').on('click' ,function(){
     //after selection, fade out the 3 categories
@@ -154,11 +153,10 @@ function addActivitySuccess(newActivity){
   $('#activityModal select').val('');
   //push new activity to the array
   activitiesArr.push(newActivity);
-  alert("Activity " + newActivity.activity_name + " Has Been Added, Thank You!");
   //close the modal
   $('#activityModal').modal('toggle');
-  //remove border from all 3 category photo
-  $('.row .photo').css("border","0");
+  //open message modal
+  $('#messageModal').modal();
   //remove activties from page
   $('#activityTarget').empty();
 }
@@ -182,25 +180,19 @@ function updateActivitySuccess(updatedActivity){
         activitiesArr.splice(i, 1);
         //add the updated actiivty
         activitiesArr.push(activity);
-        //once the activity has been found, exit loop
-        //break;
       }
   });
-
-  alert("Activity " + updatedActivity.activity_name + " Has Been Updated, Thank You!");
   //close the modal
   $('#activityModal').modal('toggle');
-  //remove border from all 3 category photo
-  $('.row .photo').css("border","0");
+  //open message model
+  $('#messageModal').modal();
   //remove activties from page
   $('#activityTarget').empty();
-
 }
 
 function updateActivityError(){
   console.log("Update activity error: " + err);
 }
-
 
 //render acitivities
 function render(activities){

@@ -44,7 +44,7 @@ var activityList = [ {activity_name: "Hebrew Song & Movement",
                         description: "Small-group Vinyassa Flow Classes",
                         schedule: "Mon: 7:15 PM - 8:15 PM  8:30 PM - 9:30 PM;   Wed: 7:15 PM - 8:15 PM  8:30 PM - 9:30 PM;" ,
                         location: "1399 S Winchester Blvd Suite 140, San Jose, CA",
-                        website:"www.wholebodysj.com/yoga",
+                        website:"",
                         image_url:"/images/gali_yoga.jpg",
                         instructor:"Gali"
                       },
