@@ -71,12 +71,12 @@
                   <div class"info col-md-9">
                     <div><h4>{{activity_name}}</h4></div>
                     <div id="activityInfo" class="row">
-                        <h5>Description: {{description}}</h5><br>
-                        <h5>Location: {{location}}</h5><br>
+                        <h5>Description: {{description}}</h5>
+                        <h5>Location: {{location}}</h5>
+                        <h5>Instructor: {{instructor.inst_name}}</h5>
                         {{#if website}}
                         {{!--{{create website link only if there is a website}}--}}
                           <a href={{website}}>Website</a>
-                          <br>
                         {{/if}}
                         <h5>Email: {{instructor.email}}</h5>
                     </div>

@@ -79,6 +79,10 @@ margin-top: 6px;
   border-radius: 5px;
 }
 
+.activity h5{
+  padding-bottom: 10px;
+}
+
 .info{
   border-radius: 5px;
 }
