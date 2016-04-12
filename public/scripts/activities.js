@@ -37,6 +37,9 @@ $(document).ready(function(){
   //listen to click on add activity button
   $('#addActivityBtn').on('click', function(e){
     e.preventDefault();
+    //clear fields
+    $('fieldset input').val('');
+    $('#fieldset option:selected').text();
     //remove activties from page
     $('#activityTarget').empty();
     //remove fade out effect from categories
@@ -44,9 +47,6 @@ $(document).ready(function(){
     $('.photo').addClass('active');
     //open the add activity modal
     $('#activityModal').modal();
-    //clear form input fields
-    $('#activityModal input').val('');
-    $('#activityModal option').val('');
     //set data-btnName attribute in order to know what ajax call to use
   $('#activityModal').attr('data-btnName', 'addActivity');
   });
@@ -79,7 +79,7 @@ $(document).ready(function(){
   //listen to click on save changes button, in activityModal, after add/update activity
   $('#saveActivity').on('click', function(e){
     e.preventDefault();
-    var dataString = "activity_name=" + $('#activity_name').val() + "&category=" + $('#category').val() + "&description=" +
+    var dataString = "activity_name=" + $('#activity_name').val() + "&category=" + $('#category option:selected').text() + "&description=" +
                     $('#description').val() + "&location=" + $('#location').val() + "&website=" + $('#website').val() + "&instructor=" +
                     $('#instructor').val() + "&image_url=" + $('#image_url').val();
     if($('#activityModal').attr('data-btnName') === 'addActivity') {
@@ -158,13 +158,13 @@ function deleteActivityError(err){
 function addActivitySuccess(newActivity){
   //push new activity to the array
   activitiesArr.push(newActivity);
+  //clear fields
+  $('fieldset input').val('');
+  $('#category option:selected').text();
   //close the modal
   $('#activityModal').modal('toggle');
   //open message modal
   $('#messageModal').modal();
-  //clear form input fields
-  $('#activityModal input').val('');
-  $('#activityModal option').val('');
 }
 
 function addActivityError(err){
@@ -172,30 +172,23 @@ function addActivityError(err){
 }
 
 function updateActivitySuccess(updatedActivity){
-  //clear form input fields
-  console.log("updateActivitySuccess function");
-  $('#activityModal input').val('');
-  $('#activityModal select').val('');
   var activityId = updatedActivity._id;
-  console.log("activity id: " + activityId);
   //find the updated activity in the activities array, remove it and add the updated activity
   activitiesArr.forEach(function(activity, i){
     //itirate through the array and remove the deleted acivity
       if (activity._id === activityId) {
-        //remove the original activity
-        activitiesArr.splice(i, 1);
-        //add the updated actiivty
-        activitiesArr.push(activity);
+        //update the original activity
+        activitiesArr[i] = activity;
       }
   });
+  //clear fields
+  $('fieldset input').val('');
+  $('#fieldset option:selected').text();
   //close the modal
   $('#activityModal').modal('toggle');
   //open message model
   $('#messageModal').modal();
   //remove activties from page
-  //clear form input fields
-  $('#activityModal input').val('');
-  $('#activityModal option').val('');
   $('#activityTarget').empty();
   //remove fade out effect from categories
   $('.photo').removeClass('inactive');
